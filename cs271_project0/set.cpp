@@ -9,6 +9,7 @@
 #include "set.h"
 #include <iostream>
 #include <cmath>
+#include <string>
 using namespace std;
 
 //-----------------
@@ -127,4 +128,64 @@ Set<T>     Set<T>::operator=   ( const Set<T> &other_set )
     }
 
     return *this;
+}
+
+//==================================================
+// cardinality
+// This returns the number of items in the list
+// Parameters: none
+// Return value: int count
+//==================================================
+template <class T>
+int     Set<T>::cardinality     ( void ) const
+{
+	Node *ptr = head;
+	int count = 0;
+	
+	while ( ptr != NULL )
+	{
+		count++;
+		ptr = ptr->next;
+	}
+	return count;
+}
+
+//==================================================
+// empty
+// This returns true if the list is empty,
+// false otherwise
+// Parameters: none
+// Return value: True or False
+//==================================================
+template <class T>
+bool    Set<T>::empty    ( void ) const
+{
+    return (head == NULL);
+}
+
+//==================================================
+// to_string
+// Converts ListLinked object to c++ string type.
+// Parameters: none
+// Return value: string of the form "n/d" where
+// n is the numerator and d is the denominator.
+//==================================================
+
+template <class T>
+string   Set<T>::to_string    ( void ) const
+{
+    string result = "[";
+    Node* ptr = head;
+
+    while (ptr != NULL)
+    {
+        result += std::to_string(ptr->item);
+        ptr = ptr->next;
+
+        if (ptr != NULL)
+            result += " ,";
+    }
+
+    result += "]";
+    return result;
 }
