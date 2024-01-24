@@ -1,7 +1,7 @@
 //========================================================
 // William Nguyen, Cheryl Nguyen
-// January 2024
 // set.h
+// January 2024
 // This file contains the Set class declaration.  
 //========================================================
 #include <iostream>

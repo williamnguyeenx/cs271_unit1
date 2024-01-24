@@ -17,9 +17,9 @@ using namespace std;
 
 //======================
 // default constructor
-// creates a new Set that is empty
-// params: none
-// return value: none
+// Creates a new empty Set
+// Parameter: none
+// Return Value: none
 //=======================
 template <class T> 
     Set<T>::Set   (void)
@@ -63,6 +63,8 @@ template <class T>
 // destructor
 // This deletes the dynamic
 // memory allocation for this class.
+// Parameter: None
+// Return Value: None
 //==================================================
 template <class T>
     Set<T>::~Set        ( void )
