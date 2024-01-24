@@ -56,7 +56,6 @@ friend ostream & operator<< ( ostream &os, Set<T> &other_set )
 	return os;	
 }
 
-
 };
 
 #include "set.cpp"
