@@ -24,19 +24,39 @@ private:
 	Node	*head;		// the pointer for the linked list
 
 public:
-        Set();
-        ~Set();
-        void insert(const T x);
-        void remove(const T x);
-        int cardinality();
-        bool empty();
-        bool contains(const T x);
-        void operator==(const T &other_set);
-        void operator<=(const T &other_set);
-        Set<T> operator+(const T &other_set);
-        Set<T> operator&(const T &other_set);
-        Set<T> operator-(const T &other_set);
-        string to_string();
+                Set             ( void );
+                Set		( const Set<T> &other_set );
+                ~Set            ( void );
+Set<T>		operator=	( const Set<T> &other_set );
+void            insert          ( const T &x );
+void            remove          ( const T &x );
+int             cardinality     ( void ) const;
+bool            empty           ( void ) const;
+bool            contains        ( const T &x );
+void            operator==      ( const Set<T> &other_set ) const;
+void            operator<=      ( const Set<T> &other_set ) const;
+Set<T>          operator+       ( const Set<T> &other_set ) const;
+Set<T>          operator&       ( const Set<T> &other_set ) const;
+Set<T>          operator-       ( const Set<T> &other_set ) const;
+string          to_string       ( void ) const;
+
+friend ostream & operator<< ( ostream &os, Set<T> &other_set )
+{
+	Node *ptr = other_set.head;
+	os << "[ ";
+	while ( ptr != NULL )
+	{
+		if ( ptr->next != NULL )
+			os << ptr->item << ", ";
+		else
+			os << ptr->item << " ";
+		ptr = ptr->next;
+	}
+	os << "]";
+	return os;	
+}
+
+
 };
 
 #include "set.cpp"
