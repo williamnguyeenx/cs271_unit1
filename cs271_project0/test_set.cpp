@@ -10,6 +10,7 @@
 #include "set.cpp"
 
 void test_insert() {
+    //int
     try {
         Set<int> s;
         s.insert(0);
@@ -26,9 +27,30 @@ void test_insert() {
     } catch (exception& e) {
         cerr << "Error inserting into set : " << e.what() << endl;
     }
+    //float
+    try {
+        Set<float> s1;
+        s1.insert(0.5);
+        string set_str = s1.to_string();
+        if (s1.to_string() != "0") {
+            cout << "Incorrect insert result. Expected 0 but got : " << set_str << endl;
+        }
+        s1.insert(2.4);
+        s1.insert(-1.2);
+        set_str = s1.to_string();
+        if (s1.to_string() != "-1.2 2.4 0") {
+            cout << "Incorrect insert result. Expected -1.2 2.4 0 but got : " << set_str << endl;
+        }
+    } catch (exception& e) {
+        cerr << "Error inserting into set : " << e.what() << endl;
+    }
+    //char
+
+    //string
 }
 
 void test_remove() {
+    //int
     try {
         Set<int> s;
         s.insert(1);
@@ -48,6 +70,11 @@ void test_remove() {
     } catch (exception &e) {
         cerr << "Error removing from set : " << e.what() << endl;
     }
+    //float
+
+    //char
+
+    //string
 }
 
 void test_cardinality() {
