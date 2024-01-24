@@ -163,29 +163,35 @@ bool    Set<T>::empty    ( void ) const
     return (head == NULL);
 }
 
-//==================================================
-// to_string
-// Converts ListLinked object to c++ string type.
-// Parameters: none
-// Return value: string of the form "n/d" where
-// n is the numerator and d is the denominator.
-//==================================================
-
 template <class T>
-string   Set<T>::to_string    ( void ) const
+void Set<T>::remove ( const T&x )
 {
-    string result = "[";
-    Node* ptr = head;
+    Node *prevPtr = NULL;
+    Node *ptr = head;
 
-    while (ptr != NULL)
+    if (ptr == NULL)
     {
-        result += std::to_string(ptr->item);
+        cout << "Set is empty" << endl;
+    }
+    
+    while (ptr != NULL && ptr->item != x){
+        prevPtr = ptr;
         ptr = ptr->next;
-
-        if (ptr != NULL)
-            result += " ,";
     }
 
-    result += "]";
-    return result;
+    if (ptr != NULL)
+    {
+        if (ptr == head)
+        {
+            head = ptr->next;
+        }
+        else
+        {
+            prevPtr->next = ptr;
+        }
+        if (ptr == NULL)
+        {
+            ptr = prevPtr;
+        }
+    }
 }
