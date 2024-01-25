@@ -239,7 +239,7 @@ void Set<T>::remove ( const T &x )
 // Return value: true/false
 //==================================================
 template <class T>
-bool Set<T>::contains(const T &x)
+bool    Set<T>::contains    (const T &x)
 {
     Node *ptr = head;
 
@@ -262,4 +262,17 @@ bool Set<T>::contains(const T &x)
     if (ptr->next == NULL)
         return false;
 
+}
+
+//==================================================
+// operator==
+// This indicates whether a Set contains the 
+// same elements as another one
+// Parameters: reference call to Set
+// Return value: true/false
+//==================================================
+template <class T>
+bool     Set<T>::operator==   ( const Set<T> &other_set )
+{
+    
 }
