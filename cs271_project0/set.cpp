@@ -269,14 +269,10 @@ bool    Set<T>::contains    (const T &x)
 template <class T>
 bool     Set<T>::operator==   ( const Set<T> &other_set )
 {
-    if (cardinality != other_set.cardinality)
+    if (cardinality() != other_set.cardinality())
         return false;
 
     Node *ptr = head;
-    Node *qtr = other_set.head;
-
-    if (ptr == NULL || qtr == NULL)
-        cout << "Set is empty\n";
 
     while (ptr != NULL)
     {
