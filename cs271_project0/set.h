@@ -25,19 +25,19 @@ private:
 
 public:
                 Set             ( void );
-                Set		( const Set<T> &other_set );
+                Set				( const Set<T> &other_set );
                 ~Set            ( void );
-Set<T>		operator=	( const Set<T> &other_set );
+Set<T>			operator=		( const Set<T> &other_set );
 void            insert          ( const T &x );
 void            remove          ( const T &x );
 int             cardinality     ( void ) const;
 bool            empty           ( void ) const;
 bool            contains        ( const T &x );
-bool            operator==      ( const Set<T> &other_set ) const;
-bool            operator<=      ( const Set<T> &other_set ) const;
-Set<T>          operator+       ( const Set<T> &other_set ) const;
-Set<T>          operator&       ( const Set<T> &other_set ) const;
-Set<T>          operator-       ( const Set<T> &other_set ) const;
+bool            operator==      ( const Set<T> &other_set );
+bool            operator<=      ( const Set<T> &other_set );
+Set<T>          operator+       ( const Set<T> &other_set );
+Set<T>          operator&       ( const Set<T> &other_set );
+Set<T>          operator-       ( const Set<T> &other_set );
 string          to_string       ( void ) const;
 
 friend ostream & operator<< ( ostream &os, Set<T> &other_set )
