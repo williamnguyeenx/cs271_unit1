@@ -283,3 +283,54 @@ bool     Set<T>::operator==   ( const Set<T> &other_set )
     
     return true;
 }
+
+//==================================================
+// operator+
+// Create a set containing the union of two sets
+// Parameters: reference call to Set
+// Return value: a Set object
+//==================================================
+template <class T>
+Set<T>     Set<T>::operator+   ( const Set<T> &other_set )
+{
+    Set<T> union;
+    Node *ptr = head;
+    while (ptr != nullptr)
+    {
+        union.insert(ptr->item);
+        ptr = ptr->next;
+    }
+
+    ptr = other_set.head;
+    while (ptr != nullptr)
+    {
+        if (!union.contains(ptr->item))
+        {
+            union.insert(ptr->item);
+        }
+        ptr = ptr->next;
+    }
+    return union;
+}
+
+//==================================================
+// operator&
+// Create a set containing the interections of two sets
+// Parameters: reference call to Set
+// Return value: a Set object
+//==================================================
+template <class T>
+Set<T> Set<T>::operator& ( const Set<T> &other_set )
+{
+    Set<T> intersection;
+    Node *ptr = head;
+
+    while (ptr != nullptr)
+    {
+        if (other_set.contains(ptr->item)){
+            intersection.insert(ptr->item);
+        }
+        ptr = ptr->next;
+    }
+    return intersection;
+}
