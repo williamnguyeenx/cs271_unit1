@@ -195,9 +195,27 @@ void Set<T>::remove ( const T &x )
         {
             prevPtr->next = ptr;
         }
-        if (ptr == NULL)
-        {
-            ptr = prevPtr;
-        }
     }
+    if (ptr == NULL)
+    {
+        ptr = prevPtr;
+    }
+    
+    delete ptr;
+}
+
+template <class T>
+bool Set<T>::contains(const T &x)
+{
+    Node *ptr = head;
+
+    if (ptr == NULL)
+    {
+        cout << "Set is empty" << endl;
+    }
+
+    while (ptr != NULL && ptr->item != x){
+        ptr = ptr->next;
+    }
+
 }
