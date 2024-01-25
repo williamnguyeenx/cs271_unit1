@@ -293,24 +293,24 @@ bool     Set<T>::operator==   ( const Set<T> &other_set )
 template <class T>
 Set<T>     Set<T>::operator+   ( const Set<T> &other_set )
 {
-    Set<T> union;
+    Set<T> set_union;
     Node *ptr = head;
     while (ptr != nullptr)
     {
-        union.insert(ptr->item);
+        set_union.insert(ptr->item);
         ptr = ptr->next;
     }
 
     ptr = other_set.head;
     while (ptr != nullptr)
     {
-        if (!union.contains(ptr->item))
+        if (!set_union.contains(ptr->item))
         {
-            union.insert(ptr->item);
+            set_union.insert(ptr->item);
         }
         ptr = ptr->next;
     }
-    return union;
+    return set_union;
 }
 
 //==================================================

@@ -7,7 +7,7 @@
 //========================================================
 
 #include <iostream>
-#include "set.cpp"
+#include "set.h"
 
 void test_insert() {
     //int
