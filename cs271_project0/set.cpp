@@ -164,6 +164,33 @@ bool    Set<T>::empty    ( void ) const
 }
 
 //==================================================
+// insert
+// This inserts a new value at the beginning of Set
+// Parameters: reference call to item 
+// Return value: none
+//==================================================
+template <class T>
+void Set<T>::insert ( const T &x )
+{
+    Node *ptr = head;
+
+    Node *qtr = new Node;
+    qtr->item = x;
+
+    if (ptr == NULL) 
+    {
+        head = qtr;
+        qtr->next = NULL;
+    }
+
+    else
+    {
+        qtr->next = ptr;
+        head = qtr;
+    }
+}
+
+//==================================================
 // remove
 // This removes an item in Set
 // Parameters: reference call to item 
