@@ -320,7 +320,7 @@ Set<T>     Set<T>::operator+   ( const Set<T> &other_set )
 // Return value: a Set object
 //==================================================
 template <class T>
-Set<T> Set<T>::operator& ( const Set<T> &other_set )
+Set<T>   Set<T>::operator&      ( const Set<T> &other_set )
 {
     Set<T> intersection;
     Node *ptr = head;
@@ -333,4 +333,54 @@ Set<T> Set<T>::operator& ( const Set<T> &other_set )
         ptr = ptr->next;
     }
     return intersection;
+}
+
+//==================================================
+// operator-
+// Create a set containing the differences between two sets
+// Parameters: reference call to Set
+// Return value: true/false
+//==================================================
+
+template <class T>
+Set<T>    Set<T>::operator-   ( const Set<T> &other_set )
+{
+    Set<T> difference;
+    Node *ptr = head;
+
+    while (ptr != nullptr)
+    {
+        if (!other_set.contains(ptr->item)){
+            difference.insert(ptr->item);
+        }
+        ptr = ptr->next;
+    }
+    return difference;
+}
+
+
+//==================================================
+// to_string
+// Converts ListLinked object to c++ string type.
+// Parameters: none
+// Return value: string of the form "n/d" where
+// n is the numerator and d is the denominator.
+//==================================================
+template <class T>
+string      Set<T>::to_string       ( void ) const
+{
+    string result = "[";
+    Node* ptr = head;
+
+    while (ptr != NULL)
+    {
+        result += std::to_string(ptr->item);
+        ptr = ptr->next;
+
+        if (ptr != NULL)
+            result += " ,";
+    }
+
+    result += "]";
+    return result;
 }

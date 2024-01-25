@@ -6,6 +6,7 @@
 //========================================================
 #include <iostream>
 #include <string>
+using namespace std;
 
 #ifndef SET_H
 #define SET_H
