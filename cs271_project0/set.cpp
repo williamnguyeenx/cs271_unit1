@@ -285,6 +285,34 @@ bool     Set<T>::operator==   ( const Set<T> &other_set )
 }
 
 //==================================================
+// operator<=
+// This indicates whether a Set is the subset of the 
+// another one
+// Parameters: reference call to Set
+// Return value: true/false
+//==================================================
+template <class T>
+bool     Set<T>::operator<=   ( const Set<T> &other_set )
+{
+    if (other_set.cardinality() == 0)
+        return false;
+
+    Node *ptr = head;
+
+    int count = 0;
+
+    while (ptr != NULL)
+    {
+        ptr = ptr->next;
+        if (other_set.contains(ptr->item))
+            count++;
+    }
+
+    if (count == cardinality())
+        return true;
+    return false;
+}
+//==================================================
 // operator+
 // Create a set containing the union of two sets
 // Parameters: reference call to Set
@@ -295,14 +323,22 @@ Set<T>     Set<T>::operator+   ( const Set<T> &other_set )
 {
     Set<T> set_union;
     Node *ptr = head;
-    while (ptr != nullptr)
+
+    if (ptr == NULL)
+        ptr = other_set.head; // if set empty, ptr goes to other set
+
+    while (ptr != NULL)
     {
         set_union.insert(ptr->item);
         ptr = ptr->next;
     }
 
     ptr = other_set.head;
-    while (ptr != nullptr)
+
+    if (ptr == NULL)
+        ptr->next = NULL; //if other set is empty, set last link to NULL
+
+    while (ptr != NULL)
     {
         if (!set_union.contains(ptr->item))
         {
@@ -361,26 +397,26 @@ Set<T>    Set<T>::operator-   ( const Set<T> &other_set )
 
 //==================================================
 // to_string
-// Converts ListLinked object to c++ string type.
+// Converts Set object to c++ string type.
 // Parameters: none
-// Return value: string of the form "n/d" where
-// n is the numerator and d is the denominator.
+// Return value: string with the elements in set 
+// separated by a single space and starting at the head
 //==================================================
 template <class T>
 string      Set<T>::to_string       ( void ) const
 {
-    string result = "[";
+    string result = "";
     Node* ptr = head;
 
     while (ptr != NULL)
     {
-        result += std::to_string(ptr->item);
+        result += to_string(ptr->item);
         ptr = ptr->next;
 
         if (ptr != NULL)
-            result += " ,";
+            result += " ";
     }
 
-    result += "]";
+    result += "";
     return result;
 }
