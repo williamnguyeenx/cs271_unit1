@@ -231,6 +231,13 @@ void Set<T>::remove ( const T &x )
     delete ptr;
 }
 
+//==================================================
+// contains
+// This specifies whether a Set contains the 
+// given element
+// Parameters: item of type T
+// Return value: true/false
+//==================================================
 template <class T>
 bool Set<T>::contains(const T &x)
 {
@@ -241,8 +248,18 @@ bool Set<T>::contains(const T &x)
         cout << "Set is empty" << endl;
     }
 
-    while (ptr != NULL && ptr->item != x){
-        ptr = ptr->next;
+    while (ptr != NULL)
+    {
+        if (ptr->item == x)
+        {
+            return true;
+            break;
+        }
+        else
+            ptr = ptr->next;
     }
+
+    if (ptr->next == NULL)
+        return false;
 
 }
