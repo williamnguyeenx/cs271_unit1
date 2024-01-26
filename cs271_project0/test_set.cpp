@@ -97,10 +97,10 @@ void test_remove() {
     //float
      try {
         Set<float> s;
-        s.insert(1.5f);
-        s.insert(2.3f);
-        s.insert(-0.7f);
-        s.remove(2.3f);
+        s.insert(1.5);
+        s.insert(2.3);
+        s.insert(-0.7);
+        s.remove(2.3);
         string set_str = s.to_string();
         if (set_str != "-0.7 1.5") {
             cout << "Incorrect insert result for float. Expected -0.7 1.5 but got : " << set_str << endl;

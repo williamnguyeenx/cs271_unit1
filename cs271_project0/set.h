@@ -41,19 +41,29 @@ Set<T>          operator&       ( const Set<T> &other_set ) const;
 Set<T>          operator-       ( const Set<T> &other_set ) const;
 string          to_string       ( void ) const;
 
+// Overloads the << operator to provide a way to print the Set contents to an output stream.
+// This function is declared as a friend within the Set class so it can access private members of Set.
+// Parameters:
+// - os: A reference to the ostream object where the Set elements will be sent (e.g., std::cout)
+// - other_set: A constant reference to the Set object to be printed
+// Return Value: A reference to the ostream object to allow chaining of << operator calls
 friend ostream & operator<< ( ostream &os, Set<T> &other_set )
 {
+	// access the head pointer of the Set to traverse the elements
 	Node *ptr = other_set.head;
-	os << "[ ";
+	os << "{ ";
+
+	// Traverse the linked list until the end is reached
 	while ( ptr != NULL )
 	{
+		// If the current node is not the last, append the item followed by a comma and a space
 		if ( ptr->next != NULL )
 			os << ptr->item << ", ";
 		else
-			os << ptr->item << " ";
+			os << ptr->item << " "; // If it's the last element, append the item followed by a space (no comma)
 		ptr = ptr->next;
 	}
-	os << "]";
+	os << "}";
 	return os;	
 }
 
