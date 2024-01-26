@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include "set.h"
+#include <cstdlib>
 
 void test_insert() {
     //int
@@ -20,6 +21,8 @@ void test_insert() {
         }
         s.insert(2);
         s.insert(-1);
+        s.insert(-1);
+        s.insert(2);
         set_str = s.to_string();
         if (s.to_string() != "-1 2 0") {
             cout << "Incorrect insert result. Expected -1 2 0 but got : " << set_str << endl;
@@ -37,6 +40,7 @@ void test_insert() {
         }
         s.insert(2.4);
         s.insert(-1.2);
+        s.insert(-1.2);
         set_str = s.to_string();
         if (s.to_string() != "-1.2 2.4 0.5") {
             cout << "Incorrect insert result. Expected -1.2 2.4 0.5 but got : " << set_str << endl;
@@ -49,6 +53,7 @@ void test_insert() {
         Set<char> s;
         s.insert('a');
         s.insert('c');
+        s.insert('b');
         s.insert('b');
         string set_str = s.to_string();
         if (set_str != "b c a") {
@@ -63,6 +68,7 @@ void test_insert() {
         Set<string> s;
         s.insert("professor");
         s.insert("stacy");
+        s.insert("data");
         s.insert("data");
         string set_str = s.to_string();
         if (set_str != "data stacy professor") {

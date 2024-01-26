@@ -192,8 +192,8 @@ bool    Set<T>::empty    ( void ) const
 template <class T>
 void Set<T>::insert     ( const T &x )
 {
-    if (contains(x))
-        cout << "Item already exists/n";
+    if (contains(x))                        // avoid duplications in set
+        return;
 
     else
     {
@@ -323,9 +323,6 @@ bool     Set<T>::operator<=   ( const Set<T> &other_set ) const
 {
     if (cardinality() == 0)
         return true;
-
-    if (cardinality() !=0 && other_set.cardinality() == 0)      // check if the supposedly subset is empty or not with the other one is empty
-        return false;
     
     if (cardinality() > other_set.cardinality())                // check if the subset's cardinality is larger than cardinality of the set that possibly contains the subset
         return false;
