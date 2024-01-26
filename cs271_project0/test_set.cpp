@@ -372,6 +372,10 @@ void test_diff() {
 void time_test() {
     Set<int> S;
     // TO-DO: generate large set
+    for (int i = 0; i < 10000; ++i) 
+    {
+        S.insert(rand() % 100000);  // Insert random numbers or i for sequential numbers
+    }
     Set<int> T;
     // TO-DO: generate large set
     int total = 0;
