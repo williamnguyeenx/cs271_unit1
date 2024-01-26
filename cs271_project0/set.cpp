@@ -43,19 +43,19 @@ template <class T>
         head = NULL;
     else
     {
-        head = new Node;
-        head->item = other_set.head->item;
-        head->next = NULL;
+        head = new Node;                            //create new head pointer
+        head->item = other_set.head->item;          //copy head pointer
+        head->next = NULL;                          //set to NULL to ready for copying the rest of the linked list
 
         Node* newNode = head;
         Node* ptr = other_set.head->next;
 
         while (ptr != NULL)
         {
-            newNode->next = new Node;
-            newNode = newNode->next;
+            newNode->next = new Node;               // create new node
+            newNode = newNode->next;                // copy the data from list's nodes to be copied
             newNode->item = ptr->item;
-            ptr = ptr->next;
+            ptr = ptr->next;                        // traverse the existing list
         }
         newNode->next = NULL;
     }
@@ -71,17 +71,17 @@ template <class T>
 template <class T>
     Set<T>::~Set        ( void )
 {
-    Node* nextTemp; // ptr to node that we will delete
+    Node* nextTemp;                                 // ptr to node that we will delete
     Node* ptr = head;
 
     while (ptr != NULL)
     {
         nextTemp = ptr;
-        ptr = ptr->next;
-        delete nextTemp;
+        ptr = ptr->next;                            // traverse the list                  
+        delete nextTemp;                            // deleting nodes
     }
 
-    head = NULL;
+    head = NULL;                                    //set head pointer to NULL to deallocate the list to be deleted
 }
 
 //==================================================
@@ -171,7 +171,7 @@ bool    Set<T>::empty    ( void ) const
 // Return value: none
 //==================================================
 template <class T>
-void Set<T>::insert ( const T &x )
+void Set<T>::insert     ( const T &x )
 {
     Node *ptr = head;
 
@@ -198,7 +198,7 @@ void Set<T>::insert ( const T &x )
 // Return value: none
 //==================================================
 template <class T>
-void Set<T>::remove ( const T &x )
+void Set<T>::remove     ( const T &x )
 {
     Node *prevPtr = NULL;
     Node *ptr = head;
@@ -311,7 +311,7 @@ bool     Set<T>::operator<=   ( const Set<T> &other_set ) const
 // Return value: a Set object
 //==================================================
 template <class T>
-Set<T>     Set<T>::operator+   ( const Set<T> &other_set ) const
+Set<T>      Set<T>::operator+   ( const Set<T> &other_set ) const
 {
     Set<T> set_union;
     Node *ptr = other_set.head;
@@ -341,16 +341,15 @@ Set<T>     Set<T>::operator+   ( const Set<T> &other_set ) const
 // Return value: a Set object
 //==================================================
 template <class T>
-Set<T>   Set<T>::operator&      ( const Set<T> &other_set ) const
+Set<T>      Set<T>::operator&      ( const Set<T> &other_set ) const
 {
     Set<T> intersection;
     Node *ptr = head;
 
     while (ptr != nullptr)
     {
-        if (other_set.contains(ptr->item)){
+        if (other_set.contains(ptr->item))
             intersection.insert(ptr->item);
-        }
         ptr = ptr->next;
     }
     return intersection;
@@ -364,16 +363,15 @@ Set<T>   Set<T>::operator&      ( const Set<T> &other_set ) const
 //==================================================
 
 template <class T>
-Set<T>    Set<T>::operator-   ( const Set<T> &other_set ) const
+Set<T>      Set<T>::operator-       ( const Set<T> &other_set ) const
 {
     Set<T> difference;
     Node *ptr = head;
 
     while (ptr != nullptr)
     {
-        if (!other_set.contains(ptr->item)){
+        if (!other_set.contains(ptr->item))
             difference.insert(ptr->item);
-        }
         ptr = ptr->next;
     }
     return difference;
@@ -418,13 +416,9 @@ string      Set<T>::to_string       ( void ) const
 	while ( ptr != NULL )
 	{
         if (ptr->next)
-        {
             result << ptr->item << " ";
-        }
 		else
-        {
             result << ptr->item;
-        }
 		ptr = ptr -> next;
 	}
 
