@@ -242,9 +242,7 @@ bool    Set<T>::contains    (const T &x)
     Node *ptr = head;
 
     if (ptr == NULL)
-    {
-        cout << "Set is empty\n";
-    }
+        return false;
 
     while (ptr != NULL)
     {
@@ -300,18 +298,14 @@ bool     Set<T>::operator<=   ( const Set<T> &other_set )
     
     Node *ptr = head;
 
-    int count = 0;
-
     while (ptr != NULL)
     {
+        if (!other_set.contains(ptr->item))
+            return false;
         ptr = ptr->next;
-        if (other_set.contains(ptr->item))
-            count++;
     }
 
-    if (count == cardinality())
-        return true;
-    return false;
+    return true;
 }
 //==================================================
 // operator+
