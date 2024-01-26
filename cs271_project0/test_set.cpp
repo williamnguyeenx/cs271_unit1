@@ -105,7 +105,7 @@ void test_remove() {
         if (set_str != "-0.7 1.5") {
             cout << "Incorrect insert result for float. Expected -0.7 1.5 but got : " << set_str << endl;
         }
-        s.remove(1.5f);
+        s.remove(1.5);
         set_str = s.to_string();
         if (set_str != "-0.7") {
             cout << "Incorrect insert result for float. Expected -0.7 but got: " << set_str << endl;
@@ -635,6 +635,10 @@ void time_test() {
     }
     Set<int> T;
     // TO-DO: generate large set
+    for (int i = 0; i < 10000; ++i) 
+    {
+        T.insert(rand() % 100000);  // Insert random numbers or i for sequential numbers
+    }
     int total = 0;
 
     int val = rand()%100000;
