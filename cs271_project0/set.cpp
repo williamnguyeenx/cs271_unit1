@@ -88,7 +88,7 @@ template <class T>
         delete nextTemp;                            // deleting nodes
     }
 
-    head = NULL;                                    //set head pointer to NULL to deallocate the list to be deleted
+    head = NULL;                                    // set head pointer to NULL to deallocate the list to be deleted
 }
 
 //==================================================
@@ -262,17 +262,17 @@ bool    Set<T>::contains    (const T &x) const
 {
     Node *ptr = head;
 
-    if (ptr == NULL)                            //check if list is empty
+    if (ptr == NULL)                            // check if list is empty
         return false;
 
-    while (ptr != NULL)                         //traverse to find the item
+    while (ptr != NULL)                         // traverse to find the item
     {
-        if (ptr->item == x)                     //if item is found, return true
+        if (ptr->item == x)                     // if item is found, return true
             return true;
         ptr = ptr->next;
     }
 
-    return false;                               //item not found, return false
+    return false;                               // item not found, return false
 }
 
 //==================================================
@@ -281,27 +281,26 @@ bool    Set<T>::contains    (const T &x) const
 // same elements as another one
 // Parameters: reference call to Set
 // Return value: true/false
-// Pre-condition: exists two Set objects of
-// the same data type
+// Pre-condition: exists two Set objects
 // Post-condition: return true if two Set objects
 // equivalent, otherwise return false
 //==================================================
 template <class T>
 bool     Set<T>::operator==   ( const Set<T> &other_set ) const
 {
-    if (cardinality() != other_set.cardinality())       //check if the cardinality of two sets are equal
+    if (cardinality() != other_set.cardinality())       // check if the cardinality of two sets are equal
         return false;
 
     Node *ptr = head;
 
-    while (ptr != NULL)                                 //traverse through one of the sets
+    while (ptr != NULL)                                 // traverse through one of the sets
     {
-        if (!other_set.contains(ptr->item))             //use contains() method to compare the items of two sets
+        if (!other_set.contains(ptr->item))             // use contains() method to compare the items of two sets
             return false;
         ptr = ptr->next;
     }
     
-    return true;                                        //passed the check, two sets that are to be checked are equal
+    return true;                                        // passed the check, two sets that are to be checked are equal
 }
 
 //==================================================
@@ -342,51 +341,56 @@ bool     Set<T>::operator<=   ( const Set<T> &other_set ) const
 // Create a set containing the union of two sets
 // Parameters: reference call to Set
 // Return value: a Set object
-// Pre-condition:
+// Pre-condition: exists two Set objects
+// Post-condition: return a new Set object that
+// is the union of two sets
 //==================================================
 template <class T>
 Set<T>      Set<T>::operator+   ( const Set<T> &other_set ) const
 {
-    Set<T> set_union;
-    Node *ptr = other_set.head;
+    Set<T> set_union;                           // new Set object to hold the union of two sets
+    Node *ptr = other_set.head;                 // access one of the sets
 
-    while (ptr != NULL)
+    while (ptr != NULL)                         // insert items from that set
     {
         set_union.insert(ptr->item);
         ptr = ptr->next;
     }
 
-    ptr = head;
+    ptr = head;                                 // access the other set
 
     while (ptr != NULL)
     {
-        if (!set_union.contains(ptr->item))
+        if (!set_union.contains(ptr->item))     // use contains() to not insert duplicates into the union set
             set_union.insert(ptr->item);
         ptr = ptr->next;
     }
 
-    return set_union;
+    return set_union;                           // return the union set
 }
 
 //==================================================
 // operator&
-// Create a set containing the interections of two sets
+// Create a set containing the intersections of two sets
 // Parameters: reference call to Set
 // Return value: a Set object
+// Pre-condition: exists two Set Objects
+// Post-condition: return a new Set object containing
+// intersecting items of two sets
 //==================================================
 template <class T>
 Set<T>      Set<T>::operator&      ( const Set<T> &other_set ) const
 {
-    Set<T> intersection;
+    Set<T> intersection;                        //new Set object to hold the intersecting items of two sets
     Node *ptr = head;
 
-    while (ptr != nullptr)
+    while (ptr != NULL)
     {
-        if (other_set.contains(ptr->item))
-            intersection.insert(ptr->item);
+        if (other_set.contains(ptr->item))      //find intersecting items
+            intersection.insert(ptr->item);     //add into the intersection set
         ptr = ptr->next;
     }
-    return intersection;
+    return intersection;                        //return the set containing the intersections of two sets
 }
 
 //==================================================
@@ -394,21 +398,24 @@ Set<T>      Set<T>::operator&      ( const Set<T> &other_set ) const
 // Create a set containing the differences between two sets
 // Parameters: reference call to Set
 // Return value: true/false
+// Pre-condition: exists two Set objects
+// Post-condition: return a new Set object containing
+// the non-intersecting items between two sets
 //==================================================
 
 template <class T>
 Set<T>      Set<T>::operator-       ( const Set<T> &other_set ) const
 {
-    Set<T> difference;
+    Set<T> difference;                          //new Set object to hold the differences of two sets
     Node *ptr = head;
 
-    while (ptr != nullptr)
+    while (ptr != NULL)
     {
-        if (!other_set.contains(ptr->item))
-            difference.insert(ptr->item);
+        if (!other_set.contains(ptr->item))     //find non-intersecting items
+            difference.insert(ptr->item);       //insert into the new set
         ptr = ptr->next;
     }
-    return difference;
+    return difference;                          //return the set containing the differences of two sets
 }
 
 
@@ -418,21 +425,23 @@ Set<T>      Set<T>::operator-       ( const Set<T> &other_set ) const
 // Parameters: none
 // Return value: string with the elements in set 
 // separated by a single space and starting at the head
+// Pre-condition: exists a Set object
+// Post-condition: return a string of the object's data
 //==================================================
 template <class T>
 string      Set<T>::to_string       ( void ) const
 {
-    stringstream result;
+    stringstream result;                        //variable to temporarily hold the Set object's data
 	Node *ptr = head;
 
 	while ( ptr != NULL )
 	{
-        if (ptr->next)
+        if (ptr->next)                          //if pointer has not reach the end of the list, add data to 'result' and add a whitespace
             result << ptr->item << " ";
 		else
-            result << ptr->item;
+            result << ptr->item;                //if pointer is at the end, add just the last data to 'result'
 		ptr = ptr -> next;
 	}
 
-    return result.str();
+    return result.str();                        //return a string holding the Set object's data
 }
