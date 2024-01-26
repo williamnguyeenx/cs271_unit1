@@ -333,7 +333,7 @@ Set<T>     Set<T>::operator+   ( const Set<T> &other_set )
             set_union.insert(ptr->item);
         ptr = ptr->next;
     }
-    
+
     return set_union;
 }
 
@@ -396,18 +396,17 @@ string      Set<T>::to_string       ( void ) const
     string result = "";
     Node* ptr = head;
 
-    if (head == NULL)
+    if (ptr == NULL)
         return result;
 
     while (ptr != NULL)
     {
         result += to_string(ptr->item);
-        ptr = ptr->next;
 
-        if (ptr != NULL)
+        if (ptr->next != NULL)
             result += " ";
+        ptr = ptr->next;
     }
 
-    result += "";
     return result;
 }
