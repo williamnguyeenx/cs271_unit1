@@ -393,7 +393,9 @@ Set<T>    Set<T>::operator-   ( const Set<T> &other_set ) const
 //     string result = "";
 //     Node* ptr = head;
 
-
+//     if (ptr == NULL){
+//     return result;
+//     }
 
 //     while (ptr != NULL)
 //     {
@@ -412,9 +414,6 @@ string      Set<T>::to_string       ( void ) const
 {
     stringstream result;
 	Node *ptr = head;
-
-    if (ptr == NULL)
-    return result;
 
 	while ( ptr != NULL )
 	{
