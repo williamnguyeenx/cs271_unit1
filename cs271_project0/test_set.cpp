@@ -94,49 +94,50 @@ void test_remove() {
     } catch (exception &e) {
         cerr << "Error removing from set : " << e.what() << endl;
     }
-    // //float
-    //  try {
-    //     Set<float> s;
-    //     s.insert(1.5f);
-    //     s.insert(2.3f);
-    //     s.insert(-0.7f);
-    //     string set_str = s.to_string();
-    //     if (set_str != "1.5 2.3 -0.7") {
-    //         cout << "Incorrect insert result for float. Expected 1.5 2.3 -0.7 but got : " << set_str << endl;
-    //     }
-    // } catch (exception& e) {
-    //     cerr << "Error inserting float into set : " << e.what() << endl;
-    // }
 
-    // //char
-    // try {
-    //     Set<char> s;
-    //     s.insert('x');
-    //     s.insert('y');
-    //     s.insert('z');
-    //     s.remove('y');
-    //     string set_str = s.to_string();
-    //     if (set_str != "x z") {
-    //         cout << "Incorrect remove result for char. Expected x z but got : " << set_str << endl;
-    //     }
-    // } catch (exception &e) {
-    //     cerr << "Error removing char from set : " << e.what() << endl;
-    // }
+    //float
+     try {
+        Set<float> s;
+        s.insert(1.5);
+        s.insert(2.3);
+        s.insert(-0.7);
+        string set_str = s.to_string();
+        if (set_str != "-0.7 2.3 1.5") {
+            cout << "Incorrect insert result for float. Expected 1.5 2.3 -0.7 but got : " << set_str << endl;
+        }
+    } catch (exception& e) {
+        cerr << "Error inserting float into set : " << e.what() << endl;
+    }
 
-    // //string
-    // try {
-    //     Set<string> s;
-    //     s.insert("orange");
-    //     s.insert("grape");
-    //     s.insert("lemon");
-    //     s.remove("grape");
-    //     string set_str = s.to_string();
-    //     if (set_str != "orange lemon") {
-    //         cout << "Incorrect remove result for string. Expected orange lemon but got : " << set_str << endl;
-    //     }
-    // } catch (exception &e) {
-    //     cerr << "Error removing string from set : " << e.what() << endl;
-    // }
+    //char
+    try {
+        Set<char> s;
+        s.insert('x');
+        s.insert('y');
+        s.insert('z');
+        s.remove('y');
+        string set_str = s.to_string();
+        if (set_str != "z x") {
+            cout << "Incorrect remove result for char. Expected x z but got : " << set_str << endl;
+        }
+    } catch (exception &e) {
+        cerr << "Error removing char from set : " << e.what() << endl;
+    }
+
+    //string
+    try {
+        Set<string> s;
+        s.insert("271");
+        s.insert("cs");
+        s.insert("spring");
+        s.remove("cs");
+        string set_str = s.to_string();
+        if (set_str != "spring 271") {
+            cout << "Incorrect remove result for string. Expected spring 271 but got : " << set_str << endl;
+        }
+    } catch (exception &e) {
+        cerr << "Error removing string from set : " << e.what() << endl;
+    }
 }
 
 void test_cardinality() {
@@ -277,6 +278,13 @@ void test_subset() {
         s.insert(11);
         if(s<=t) {
             cout << "Set " << s.to_string() << " should NOT be considered a subset of the set " << t.to_string() << endl;
+        }
+
+        s.remove(3);
+        s.remove(7);
+        s.remove(11);
+        if (!(s<=t)) {
+            cout << "Set " << s.to_string() << " should be considered a subset of the set " << t.to_string() << endl;
         }
     } catch (exception& e) {
         cerr << "Error in determining subset : " << e.what() << endl;

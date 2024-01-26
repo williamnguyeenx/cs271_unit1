@@ -287,6 +287,9 @@ bool     Set<T>::operator==   ( const Set<T> &other_set ) const
 template <class T>
 bool     Set<T>::operator<=   ( const Set<T> &other_set ) const
 {
+    if (cardinality() == 0)
+        return true;
+
     if (cardinality() !=0 && other_set.cardinality() == 0)
         return false;
     
@@ -387,28 +390,6 @@ Set<T>    Set<T>::operator-   ( const Set<T> &other_set ) const
 // Return value: string with the elements in set 
 // separated by a single space and starting at the head
 //==================================================
-// template <class T>
-// string      Set<T>::to_string       ( void ) const
-// {
-//     string result = "";
-//     Node* ptr = head;
-
-//     if (ptr == NULL){
-//     return result;
-//     }
-
-//     while (ptr != NULL)
-//     {
-//         result += ptr->item;
-
-//         if (ptr->next != NULL)
-//             result += " ";
-//         ptr = ptr->next;
-//     }
-
-//     return result;
-// }
-
 template <class T>
 string      Set<T>::to_string       ( void ) const
 {
