@@ -22,19 +22,24 @@ using namespace std;
 // Creates a new empty Set
 // Parameter: none
 // Return Value: none
+// Pre-condition: none
+// Post-condition: creates a new empty Set with head initialized to NULL
 //=======================
 template <class T> 
     Set<T>::Set   (void)
 {
-    head = NULL;
+    head = NULL; // initialize the head of the list to NULL -> an empty set
 }
+
 
 //======================
 // copy constructor
 // Creates a new Set object that is a copy
 // of the parameter.
-// Parameter: Set reference to other_set
+// Parameter: constant reference to another Set object (other_set) to be copied
 // Return Value: none
+// Pre-condition: none
+// Post-condition: creates a new Set object that is a deep copy of the parameter other_set
 //=======================
 template <class T>
     Set<T>::Set        ( const Set<T> &other_set )
@@ -43,9 +48,9 @@ template <class T>
         head = NULL;
     else
     {
-        head = new Node;                            //create new head pointer
-        head->item = other_set.head->item;          //copy head pointer
-        head->next = NULL;                          //set to NULL to ready for copying the rest of the linked list
+        head = new Node;                            // create new head pointer
+        head->item = other_set.head->item;          // copy head pointer
+        head->next = NULL;                          // set to NULL to ready for copying the rest of the linked list
 
         Node* newNode = head;
         Node* ptr = other_set.head->next;
@@ -67,6 +72,8 @@ template <class T>
 // memory allocation for this class.
 // Parameter: None
 // Return Value: None
+// Pre-condition: None
+// Post-condition: Frees the dynamic memory allocated for the Set.
 //==================================================
 template <class T>
     Set<T>::~Set        ( void )
@@ -87,14 +94,17 @@ template <class T>
 //==================================================
 // assignment operator
 // first destructor, then copy constructor
-// Parameters: Linked Set reference to mySet
-// Return value: a Linked Set object
+// Pre-condition: None
+// Post-condition: Copies the content of the other_set into this set, replacing its current content
+// Parameters: Constant reference to another Set object (other_set) to assign from
+// Return Value: Reference to this Set object after assignment
 //==================================================
 template <class T>
 Set<T>     Set<T>::operator=   ( const Set<T> &other_set )
 {
-    if (this != &other_set)
+    if (this != &other_set) // Check for self-assignment
     {
+        // Delete the current set
         Node* nextTemp;
         Node* ptr = head;
 
@@ -105,6 +115,7 @@ Set<T>     Set<T>::operator=   ( const Set<T> &other_set )
             ptr = nextTemp; 
         }
 
+        // Copy from other_set
         if (other_set.head == NULL)
             head = NULL;
         else
@@ -128,7 +139,7 @@ Set<T>     Set<T>::operator=   ( const Set<T> &other_set )
         }
     }
 
-    return *this;
+    return *this; // Return a reference to the current object
 }
 
 //==================================================
@@ -136,13 +147,16 @@ Set<T>     Set<T>::operator=   ( const Set<T> &other_set )
 // This returns the number of items in the list
 // Parameters: none
 // Return value: int count
+// Pre-condition: None
+// Post-condition: Returns the count of elements in the Set
 //==================================================
 template <class T>
 int     Set<T>::cardinality     ( void ) const
 {
 	Node *ptr = head;
-	int count = 0;
+	int count = 0; // initialize the number of items
 	
+    // Count each node until the end 
 	while ( ptr != NULL )
 	{
 		count++;
@@ -157,11 +171,13 @@ int     Set<T>::cardinality     ( void ) const
 // false otherwise
 // Parameters: none
 // Return value: True or False
+// Pre-condition: None (the function does not modify the set)
+// Post-condition: None (the function returns a boolean value without changing the set)
 //==================================================
 template <class T>
 bool    Set<T>::empty    ( void ) const
 {
-    return (head == NULL);
+    return (head == NULL); // true if Set is empty (head = NULL)
 }
 
 //==================================================
@@ -312,9 +328,9 @@ bool     Set<T>::operator<=   ( const Set<T> &other_set ) const
     
     Node *ptr = head;
 
-    while (ptr != NULL)                                         //traverse through the potential subset
+    while (ptr != NULL)                                         // traverse through the potential subset
     {
-        if (!other_set.contains(ptr->item))                     //use contains() to traverse the other set and check if the subset's items are present in the other set
+        if (!other_set.contains(ptr->item))                     // use contains() to traverse the other set and check if the subset's items are present in the other set
             return false;
         ptr = ptr->next;
     }
