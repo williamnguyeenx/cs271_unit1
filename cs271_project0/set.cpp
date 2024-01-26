@@ -10,6 +10,7 @@
 #include <iostream>
 #include <cmath>
 #include <string>
+#include <sstream>
 using namespace std;
 
 //-----------------
@@ -386,23 +387,47 @@ Set<T>    Set<T>::operator-   ( const Set<T> &other_set ) const
 // Return value: string with the elements in set 
 // separated by a single space and starting at the head
 //==================================================
+// template <class T>
+// string      Set<T>::to_string       ( void ) const
+// {
+//     string result = "";
+//     Node* ptr = head;
+
+
+
+//     while (ptr != NULL)
+//     {
+//         result += ptr->item;
+
+//         if (ptr->next != NULL)
+//             result += " ";
+//         ptr = ptr->next;
+//     }
+
+//     return result;
+// }
+
 template <class T>
 string      Set<T>::to_string       ( void ) const
 {
-    string result = "";
-    Node* ptr = head;
+    stringstream result;
+	Node *ptr = head;
 
     if (ptr == NULL)
-        return result;
-
-    while (ptr != NULL)
-    {
-        result += ptr->item;
-
-        if (ptr->next != NULL)
-            result += " ";
-        ptr = ptr->next;
-    }
-
     return result;
+
+	while ( ptr != NULL )
+	{
+        if (ptr->next)
+        {
+            result << ptr->item << " ";
+        }
+		else
+        {
+            result << ptr->item;
+        }
+		ptr = ptr -> next;
+	}
+
+    return result.str();
 }
