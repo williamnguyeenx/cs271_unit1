@@ -319,9 +319,6 @@ Set<T>     Set<T>::operator+   ( const Set<T> &other_set )
     Set<T> set_union;
     Node *ptr = head;
 
-    if (ptr == NULL)
-        ptr = other_set.head; // if set empty, ptr goes to other set
-
     while (ptr != NULL)
     {
         set_union.insert(ptr->item);
@@ -330,17 +327,13 @@ Set<T>     Set<T>::operator+   ( const Set<T> &other_set )
 
     ptr = other_set.head;
 
-    if (ptr == NULL)
-        ptr->next = NULL; //if other set is empty, set last link to NULL
-
     while (ptr != NULL)
     {
         if (!set_union.contains(ptr->item))
-        {
             set_union.insert(ptr->item);
-        }
         ptr = ptr->next;
     }
+    
     return set_union;
 }
 
