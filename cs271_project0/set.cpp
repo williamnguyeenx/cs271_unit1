@@ -192,20 +192,25 @@ bool    Set<T>::empty    ( void ) const
 template <class T>
 void Set<T>::insert     ( const T &x )
 {
-    Node *ptr = head;                   // pointer to access the list
+    if (contains(x))
+        cout << "Item already exists/n";
 
-    Node *qtr = new Node;               // a new node to hold the value of the element to be inserted
-    qtr->item = x;                      // get the element's value
-
-    if (ptr == NULL)                    // check if list is empty
-    {
-        head = qtr;                     // list's head pointer points to the new node
-        qtr->next = NULL;               // new node doesn't point to other node for it is the only node in the list
-    }
     else
     {
-        qtr->next = ptr;                // new node points to the former first node of the list
-        head = qtr;                     // list's head pointer points to the new node
+        Node *ptr = head;                   // pointer to access the list
+        Node *qtr = new Node;               // a new node to hold the value of the element to be inserted
+        qtr->item = x;                      // get the element's value
+
+        if (ptr == NULL)                    // check if list is empty
+        {
+            head = qtr;                     // list's head pointer points to the new node
+            qtr->next = NULL;               // new node doesn't point to other node for it is the only node in the list
+        }
+        else
+        {
+            qtr->next = ptr;                // new node points to the former first node of the list
+            head = qtr;                     // list's head pointer points to the new node
+        }
     }
 }
 
