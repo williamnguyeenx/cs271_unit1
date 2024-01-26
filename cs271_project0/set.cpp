@@ -296,7 +296,10 @@ bool     Set<T>::operator<=   ( const Set<T> &other_set )
 {
     if (other_set.cardinality() == 0)
         return false;
-
+    
+    if (cardinality() > other_set.cardinality())
+        return false;
+    
     Node *ptr = head;
 
     int count = 0;
@@ -407,6 +410,9 @@ string      Set<T>::to_string       ( void ) const
 {
     string result = "";
     Node* ptr = head;
+
+    if (head == NULL)
+        return result;
 
     while (ptr != NULL)
     {
