@@ -287,7 +287,7 @@ bool     Set<T>::operator==   ( const Set<T> &other_set ) const
 template <class T>
 bool     Set<T>::operator<=   ( const Set<T> &other_set ) const
 {
-    if (other_set.cardinality() == 0)
+    if (cardinality() !=0 && other_set.cardinality() == 0)
         return false;
     
     if (cardinality() > other_set.cardinality())
@@ -314,7 +314,7 @@ template <class T>
 Set<T>     Set<T>::operator+   ( const Set<T> &other_set ) const
 {
     Set<T> set_union;
-    Node *ptr = head;
+    Node *ptr = other_set.head;
 
     while (ptr != NULL)
     {
@@ -322,7 +322,7 @@ Set<T>     Set<T>::operator+   ( const Set<T> &other_set ) const
         ptr = ptr->next;
     }
 
-    ptr = other_set.head;
+    ptr = head;
 
     while (ptr != NULL)
     {
