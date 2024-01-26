@@ -94,48 +94,6 @@ void test_remove() {
     } catch (exception &e) {
         cerr << "Error removing from set : " << e.what() << endl;
     }
-<<<<<<< HEAD
-
-    //float
-     try {
-        Set<float> s;
-        s.insert(1.5);
-        s.insert(2.3);
-        s.insert(-0.7);
-        string set_str = s.to_string();
-        if (set_str != "-0.7 2.3 1.5") {
-            cout << "Incorrect insert result for float. Expected 1.5 2.3 -0.7 but got : " << set_str << endl;
-        }
-    } catch (exception& e) {
-        cerr << "Error inserting float into set : " << e.what() << endl;
-    }
-
-    //char
-    try {
-        Set<char> s;
-        s.insert('x');
-        s.insert('y');
-        s.insert('z');
-        s.remove('y');
-        string set_str = s.to_string();
-        if (set_str != "z x") {
-            cout << "Incorrect remove result for char. Expected x z but got : " << set_str << endl;
-        }
-    } catch (exception &e) {
-        cerr << "Error removing char from set : " << e.what() << endl;
-    }
-
-    //string
-    try {
-        Set<string> s;
-        s.insert("271");
-        s.insert("cs");
-        s.insert("spring");
-        s.remove("cs");
-        string set_str = s.to_string();
-        if (set_str != "spring 271") {
-            cout << "Incorrect remove result for string. Expected spring 271 but got : " << set_str << endl;
-=======
     //float
      try {
         Set<float> s;
@@ -192,7 +150,6 @@ void test_remove() {
         set_str = s.to_string();
         if (set_str != "") {
             cout << "Incorrect remove result for string. Expected empty string but got : " << set_str << endl;
->>>>>>> 623d87d3763f41b63ba2c35e17d74f54142c2985
         }
     } catch (exception &e) {
         cerr << "Error removing string from set : " << e.what() << endl;
