@@ -117,10 +117,10 @@ Set<T>     Set<T>::operator=   ( const Set<T> &other_set )
 
         // Copy from other_set
         if (other_set.head == NULL)
-            head = NULL;
+            head = NULL; // if other_set is empty, not make a new Node
         else
         {
-            head = new Node;
+            head = new Node; // other_set is not empty, create new Node to store data
             head->item = other_set.head->item;
             head->next = NULL;
 
@@ -129,10 +129,10 @@ Set<T>     Set<T>::operator=   ( const Set<T> &other_set )
 
             while (ptr != NULL)
             {
-                newNode->next = new Node;
-                newNode = newNode->next;
-                newNode->item = ptr->item;
-                newNode->next = NULL;
+                newNode->next = new Node; // keep creating new Nodes
+                newNode = newNode->next; // traverse through Nodes
+                newNode->item = ptr->item; // copy data to Nodes
+                newNode->next = NULL; // set last link to NULL
 
                 ptr = ptr->next;
             }
@@ -159,8 +159,8 @@ int     Set<T>::cardinality     ( void ) const
     // Count each node until the end 
 	while ( ptr != NULL )
 	{
-		count++;
-		ptr = ptr->next;
+		count++; // if next item is encountered, append count
+		ptr = ptr->next; // after appending count, keep traversing 
 	}
 	return count;
 }
@@ -381,16 +381,16 @@ Set<T>      Set<T>::operator+   ( const Set<T> &other_set ) const
 template <class T>
 Set<T>      Set<T>::operator&      ( const Set<T> &other_set ) const
 {
-    Set<T> intersection;                        //new Set object to hold the intersecting items of two sets
+    Set<T> intersection;                        // new Set object to hold the intersecting items of two sets
     Node *ptr = head;
 
     while (ptr != NULL)
     {
-        if (other_set.contains(ptr->item))      //find intersecting items
-            intersection.insert(ptr->item);     //add into the intersection set
+        if (other_set.contains(ptr->item))      // find intersecting items
+            intersection.insert(ptr->item);     // add into the intersection set
         ptr = ptr->next;
     }
-    return intersection;                        //return the set containing the intersections of two sets
+    return intersection;                        // return the set containing the intersections of two sets
 }
 
 //==================================================
@@ -406,16 +406,16 @@ Set<T>      Set<T>::operator&      ( const Set<T> &other_set ) const
 template <class T>
 Set<T>      Set<T>::operator-       ( const Set<T> &other_set ) const
 {
-    Set<T> difference;                          //new Set object to hold the differences of two sets
+    Set<T> difference;                          // new Set object to hold the differences of two sets
     Node *ptr = head;
 
     while (ptr != NULL)
     {
-        if (!other_set.contains(ptr->item))     //find non-intersecting items
-            difference.insert(ptr->item);       //insert into the new set
+        if (!other_set.contains(ptr->item))     // find non-intersecting items
+            difference.insert(ptr->item);       // insert into the new set
         ptr = ptr->next;
     }
-    return difference;                          //return the set containing the differences of two sets
+    return difference;                          // return the set containing the differences of two sets
 }
 
 
@@ -431,17 +431,17 @@ Set<T>      Set<T>::operator-       ( const Set<T> &other_set ) const
 template <class T>
 string      Set<T>::to_string       ( void ) const
 {
-    stringstream result;                        //variable to temporarily hold the Set object's data
+    stringstream result;                        // variable to temporarily hold the Set object's data
 	Node *ptr = head;
 
 	while ( ptr != NULL )
 	{
-        if (ptr->next)                          //if pointer has not reach the end of the list, add data to 'result' and add a whitespace
+        if (ptr->next)                          // if pointer has not reach the end of the list, add data to 'result' and add a whitespace
             result << ptr->item << " ";
 		else
-            result << ptr->item;                //if pointer is at the end, add just the last data to 'result'
+            result << ptr->item;                // if pointer is at the end, add just the last data to 'result'
 		ptr = ptr -> next;
 	}
 
-    return result.str();                        //return a string holding the Set object's data
+    return result.str();                        // return a string holding the Set object's data
 }
