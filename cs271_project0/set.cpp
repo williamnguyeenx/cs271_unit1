@@ -207,7 +207,8 @@ void Set<T>::remove ( const T &x )
         cout << "Set is empty" << endl;
     }
     
-    while (ptr != NULL && ptr->item != x){
+    while (ptr != NULL && ptr->item != x)
+    {
         prevPtr = ptr;
         ptr = ptr->next;
     }
@@ -215,15 +216,12 @@ void Set<T>::remove ( const T &x )
     if (ptr != NULL)
     {
         if (ptr == head)
-        {
             head = ptr->next;
-        }
         else
-        {
-            prevPtr->next = ptr;
-        }
+            prevPtr->next = ptr->next;
     }
-    if (ptr == NULL)
+
+    if (ptr->next == NULL)
     {
         ptr = prevPtr;
     }
