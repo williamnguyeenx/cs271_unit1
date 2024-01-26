@@ -94,10 +94,10 @@ template <class T>
 //==================================================
 // assignment operator
 // first destructor, then copy constructor
-// Pre-condition: None
-// Post-condition: Copies the content of the other_set into this set, replacing its current content
 // Parameters: Constant reference to another Set object (other_set) to assign from
 // Return Value: Reference to this Set object after assignment
+// Pre-condition: None
+// Post-condition: Copies the content of the other_set into this set, replacing its current content
 //==================================================
 template <class T>
 Set<T>     Set<T>::operator=   ( const Set<T> &other_set )
