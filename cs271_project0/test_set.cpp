@@ -631,13 +631,13 @@ void time_test() {
     // TO-DO: generate large set
     for (int i = 0; i < 10000; ++i) 
     {
-        S.insert(rand() % 100000);  // Insert random numbers or i for sequential numbers
+        S.insert(rand() % 10000);  // Insert random numbers or i for sequential numbers
     }
     Set<int> T;
     // TO-DO: generate large set
     for (int i = 0; i < 10000; ++i) 
     {
-        T.insert(rand() % 100000);  // Insert random numbers or i for sequential numbers
+        T.insert(rand() % 10000);  // Insert random numbers or i for sequential numbers
     }
     int total = 0;
 

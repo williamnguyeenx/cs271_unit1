@@ -31,7 +31,6 @@ template <class T>
     head = NULL; // initialize the head of the list to NULL -> an empty set
 }
 
-
 //======================
 // copy constructor
 // Creates a new Set object that is a copy
@@ -97,7 +96,8 @@ template <class T>
 // Parameters: Constant reference to another Set object (other_set) to assign from
 // Return Value: Reference to this Set object after assignment
 // Pre-condition: None
-// Post-condition: Copies the content of the other_set into this set, replacing its current content
+// Post-condition: Copies the content of the other_set into this set, 
+// replacing its current content
 //==================================================
 template <class T>
 Set<T>     Set<T>::operator=   ( const Set<T> &other_set )
