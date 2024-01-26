@@ -233,7 +233,7 @@ void Set<T>::remove ( const T &x )
 // Return value: true/false
 //==================================================
 template <class T>
-bool    Set<T>::contains    (const T &x)
+bool    Set<T>::contains    (const T &x) const
 {
     Node *ptr = head;
 
@@ -259,7 +259,7 @@ bool    Set<T>::contains    (const T &x)
 // Return value: true/false
 //==================================================
 template <class T>
-bool     Set<T>::operator==   ( const Set<T> &other_set )
+bool     Set<T>::operator==   ( const Set<T> &other_set ) const
 {
     if (cardinality() != other_set.cardinality())
         return false;
@@ -284,7 +284,7 @@ bool     Set<T>::operator==   ( const Set<T> &other_set )
 // Return value: true/false
 //==================================================
 template <class T>
-bool     Set<T>::operator<=   ( const Set<T> &other_set )
+bool     Set<T>::operator<=   ( const Set<T> &other_set ) const
 {
     if (other_set.cardinality() == 0)
         return false;
@@ -310,7 +310,7 @@ bool     Set<T>::operator<=   ( const Set<T> &other_set )
 // Return value: a Set object
 //==================================================
 template <class T>
-Set<T>     Set<T>::operator+   ( const Set<T> &other_set )
+Set<T>     Set<T>::operator+   ( const Set<T> &other_set ) const
 {
     Set<T> set_union;
     Node *ptr = head;
@@ -340,7 +340,7 @@ Set<T>     Set<T>::operator+   ( const Set<T> &other_set )
 // Return value: a Set object
 //==================================================
 template <class T>
-Set<T>   Set<T>::operator&      ( const Set<T> &other_set )
+Set<T>   Set<T>::operator&      ( const Set<T> &other_set ) const
 {
     Set<T> intersection;
     Node *ptr = head;
@@ -363,7 +363,7 @@ Set<T>   Set<T>::operator&      ( const Set<T> &other_set )
 //==================================================
 
 template <class T>
-Set<T>    Set<T>::operator-   ( const Set<T> &other_set )
+Set<T>    Set<T>::operator-   ( const Set<T> &other_set ) const
 {
     Set<T> difference;
     Node *ptr = head;
@@ -397,7 +397,7 @@ string      Set<T>::to_string       ( void ) const
 
     while (ptr != NULL)
     {
-        result += to_string(ptr->item);
+        result += ptr->item;
 
         if (ptr->next != NULL)
             result += " ";
