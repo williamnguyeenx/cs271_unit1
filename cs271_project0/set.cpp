@@ -169,25 +169,27 @@ bool    Set<T>::empty    ( void ) const
 // This inserts a new value at the beginning of Set
 // Parameters: reference call to item 
 // Return value: none
+// Pre-condition: a Set object exists
+// Post-condition: Element inserted as a Node at 
+// the start of the Set object
 //==================================================
 template <class T>
 void Set<T>::insert     ( const T &x )
 {
-    Node *ptr = head;
+    Node *ptr = head;                   // pointer to access the list
 
-    Node *qtr = new Node;
-    qtr->item = x;
+    Node *qtr = new Node;               // a new node to hold the value of the element to be inserted
+    qtr->item = x;                      // get the element's value
 
-    if (ptr == NULL) 
+    if (ptr == NULL)                    // check if list is empty
     {
-        head = qtr;
-        qtr->next = NULL;
+        head = qtr;                     // list's head pointer points to the new node
+        qtr->next = NULL;               // new node doesn't point to other node for it is the only node in the list
     }
-
     else
     {
-        qtr->next = ptr;
-        head = qtr;
+        qtr->next = ptr;                // new node points to the former first node of the list
+        head = qtr;                     // list's head pointer points to the new node
     }
 }
 
@@ -196,60 +198,65 @@ void Set<T>::insert     ( const T &x )
 // This removes an item in Set
 // Parameters: reference call to item 
 // Return value: none
+// Pre-condition: a Set object exists
+// Post-condition: input item removed from
+// the list/Set object
 //==================================================
 template <class T>
 void Set<T>::remove     ( const T &x )
 {
-    Node *prevPtr = NULL;
-    Node *ptr = head;
+    Node *prevPtr = NULL;                       // pointer to remove the item
+    Node *ptr = head;                           // pointer to access the list's nodes
 
-    if (ptr == NULL)
+    if (ptr == NULL)                            // check if list is empty
     {
         cout << "Set is empty\n";
         return;
     }
     
-    while (ptr != NULL && ptr->item != x)
+    while (ptr != NULL && ptr->item != x)       // traverse through the list to find the item
     {
-        prevPtr = ptr;
-        ptr = ptr->next;
+        prevPtr = ptr;                          // points to the current node the ptr is at
+        ptr = ptr->next;                        // go to the next node
     }
 
-    if (ptr != NULL)
+    if (ptr != NULL)                            // check if the item is found
     {
-        if (ptr == head)
-            head = ptr->next;
+        if (ptr == head)                        // if the item is found at the start of the list
+            head = ptr->next;                   // unlink the item
         else
-            prevPtr->next = ptr->next;
+            prevPtr->next = ptr->next;          // unlink the item
 
-        delete ptr;
+        delete ptr;                             // remove/deallocate the item 
     }   
 }
 
 //==================================================
 // contains
 // This specifies whether a Set contains the 
-// given element
+// given item
 // Parameters: item of type T
 // Return value: true/false
+// Pre-condition: a Set object exists
+// Post-condition: return true if item is found
+// in list, otherwise false
 //==================================================
 template <class T>
 bool    Set<T>::contains    (const T &x) const
 {
     Node *ptr = head;
 
-    if (ptr == NULL)
+    if (ptr == NULL)                            //check if list is empty
         return false;
 
-    while (ptr != NULL)
+    while (ptr != NULL)                         //traverse to find the item
     {
-        if (ptr->item == x)
+        if (ptr->item == x)                     //if item is found, return true
             return true;
         ptr = ptr->next;
     }
 
-    return false;
-
+    return false;                               //item not found, return false
 }
 
 //==================================================
@@ -258,31 +265,38 @@ bool    Set<T>::contains    (const T &x) const
 // same elements as another one
 // Parameters: reference call to Set
 // Return value: true/false
+// Pre-condition: exists two Set objects of
+// the same data type
+// Post-condition: return true if two Set objects
+// equivalent, otherwise return false
 //==================================================
 template <class T>
 bool     Set<T>::operator==   ( const Set<T> &other_set ) const
 {
-    if (cardinality() != other_set.cardinality())
+    if (cardinality() != other_set.cardinality())       //check if the cardinality of two sets are equal
         return false;
 
     Node *ptr = head;
 
-    while (ptr != NULL)
+    while (ptr != NULL)                                 //traverse through one of the sets
     {
-        if (!other_set.contains(ptr->item))
+        if (!other_set.contains(ptr->item))             //use contains() method to compare the items of two sets
             return false;
         ptr = ptr->next;
     }
     
-    return true;
+    return true;                                        //passed the check, two sets that are to be checked are equal
 }
 
 //==================================================
 // operator<=
 // This indicates whether a Set is the subset of the 
-// another one
+// other one
 // Parameters: reference call to Set
 // Return value: true/false
+// Pre-condition: exists two Set objects
+// Post-condition: return true if a set is the 
+// subset of the other one, otherwise return false
 //==================================================
 template <class T>
 bool     Set<T>::operator<=   ( const Set<T> &other_set ) const
@@ -290,17 +304,17 @@ bool     Set<T>::operator<=   ( const Set<T> &other_set ) const
     if (cardinality() == 0)
         return true;
 
-    if (cardinality() !=0 && other_set.cardinality() == 0)
+    if (cardinality() !=0 && other_set.cardinality() == 0)      // check if the supposedly subset is empty or not with the other one is empty
         return false;
     
-    if (cardinality() > other_set.cardinality())
+    if (cardinality() > other_set.cardinality())                // check if the subset's cardinality is larger than cardinality of the set that possibly contains the subset
         return false;
     
     Node *ptr = head;
 
-    while (ptr != NULL)
+    while (ptr != NULL)                                         //traverse through the potential subset
     {
-        if (!other_set.contains(ptr->item))
+        if (!other_set.contains(ptr->item))                     //use contains() to traverse the other set and check if the subset's items are present in the other set
             return false;
         ptr = ptr->next;
     }
@@ -312,6 +326,7 @@ bool     Set<T>::operator<=   ( const Set<T> &other_set ) const
 // Create a set containing the union of two sets
 // Parameters: reference call to Set
 // Return value: a Set object
+// Pre-condition:
 //==================================================
 template <class T>
 Set<T>      Set<T>::operator+   ( const Set<T> &other_set ) const
